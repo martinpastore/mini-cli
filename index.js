@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const files = require('./lib/files');
+const files = require('./lib/run');
 
 const chalk = require('chalk');
 const clear = require('clear');
@@ -8,9 +8,24 @@ const exec = require('child_process').exec;
 const optimist = require('optimist');
 const fs = require('fs');
 
-const name = optimist.argv["name"];
+const cmd = process.argv[2];
 
 const app = {
+    map: function(cmd) {
+        console.log(cmd);
+        switch(cmd) {
+            case 'init':
+                const name = optimist.argv["name"];
+                this.init(name);
+                break;
+            case 'run':
+                this.run();
+                break;
+            default:
+                this.init();
+                break;
+        }
+    },
     init: function (name) {
         if (!name) {
             name = 'burgerjs-test';
@@ -56,9 +71,16 @@ const app = {
                 }
             });
         });
+    },
+    run: function() {
+        exec('node module.js', function (error, stdout, stderr) {
+            if (error !== null) {
+                console.log('exec error: ' + error);
+            }
+        })
     }
-}
+};
 
-app.init(name);
+app.map(cmd);
 
 module.exports = app;
