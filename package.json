@@ -1,0 +1,19 @@
+{
+  "name": "mayo-cli",
+  "version": "0.0.1",
+  "description": "burgerjs command line interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinpastore/mayo-cli.git"
+  },
+  "author": "martinpastore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martinpastore/mayo-cli/issues"
+  },
+  "homepage": "https://github.com/martinpastore/mayo-cli#readme"
+}
