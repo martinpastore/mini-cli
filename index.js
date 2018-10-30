@@ -12,7 +12,6 @@ const cmd = process.argv[2];
 
 const app = {
     map: function(cmd) {
-        console.log(cmd);
         switch(cmd) {
             case 'init':
                 const name = optimist.argv["name"];
