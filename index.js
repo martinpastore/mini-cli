@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-const files = require('./lib/run');
-
 const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
@@ -20,6 +18,10 @@ const app = {
             case 'build':
                 this.build();
                 break;
+            case 'run':
+                const port = optimist.argv["port"];
+                this.run(port);
+                break;
             default:
                 console.log(`Mayo-CLI: '${cmd}' is not a recognized command.`);
                 break;
@@ -34,6 +36,8 @@ const app = {
 
         if (!fs.existsSync(`./${name}`)) {
             fs.mkdirSync(`./${name}`);
+        } else {
+            process.exit(1);
         }
 
         fs.mkdirSync(`./${name}/components`);
@@ -59,7 +63,7 @@ const app = {
         exec('npm init -y', function (error, stdout, stderr) {
             if (error !== null) {
                 console.log('exec error: ' + error);
-                return;
+                process.exit(1);
             }
 
             exec('npm install --save burgerjs@latest', function (error, stdout, stderr) {
@@ -67,6 +71,7 @@ const app = {
                 if (stderr !== null && stderr !== '') console.log('stderr: ' + stderr);
                 if (error !== null) {
                     console.log('exec error: ' + error);
+                    process.exit(1);
                 }
             });
         });
@@ -75,8 +80,28 @@ const app = {
         exec('node module.js', function (error, stdout, stderr) {
             if (error !== null) {
                 console.log('exec error: ' + error);
+                process.exit(1);
             }
         })
+    },
+    run: function(port) {
+        if (!port) {
+            port = '8080';
+        }
+
+        if (fs.existsSync(`./dist`)) {
+            process.chdir(`./dist`);
+
+            exec(`browser-sync start --server './' --port ${port} --files="./"`, function(error, stdout, stderr) {
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                    process.exit(1);
+                }
+            });
+        } else {
+            console.log('Mayo-CLI: You need to run "build" command instead of "run"');
+            process.exit(1);
+        }
     }
 };
 
