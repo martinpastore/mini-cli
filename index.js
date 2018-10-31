@@ -85,21 +85,27 @@ const app = {
         })
     },
     run: function(port) {
-        if (!port) {
-            port = '8080';
-        }
+        if (fs.existsSync('burger.json')) {
 
-        if (fs.existsSync(`./dist`)) {
-            process.chdir(`./dist`);
+            if (!port) {
+                port = '8080';
+            }
 
-            exec(`browser-sync start --server './' --port ${port} --files="./"`, function(error, stdout, stderr) {
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                    process.exit(1);
-                }
-            });
+            if (fs.existsSync(`./dist`)) {
+                process.chdir(`./dist`);
+
+                exec(`browser-sync start --server './' --port ${port} --files="./"`, function (error, stdout, stderr) {
+                    if (error !== null) {
+                        console.log('exec error: ' + error);
+                        process.exit(1);
+                    }
+                });
+            } else {
+                console.log('Mayo-CLI: You need to run "build" command before "run"');
+                process.exit(1);
+            }
         } else {
-            console.log('Mayo-CLI: You need to run "build" command instead of "run"');
+            console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
             process.exit(1);
         }
     }
