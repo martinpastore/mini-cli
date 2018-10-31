@@ -17,8 +17,8 @@ const app = {
                 const name = optimist.argv["name"];
                 this.init(name);
                 break;
-            case 'run':
-                this.run();
+            case 'build':
+                this.build();
                 break;
             default:
                 this.init();
@@ -71,7 +71,7 @@ const app = {
             });
         });
     },
-    run: function() {
+    build: function() {
         exec('node module.js', function (error, stdout, stderr) {
             if (error !== null) {
                 console.log('exec error: ' + error);
