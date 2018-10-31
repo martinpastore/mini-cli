@@ -21,7 +21,7 @@ const app = {
                 this.build();
                 break;
             default:
-                this.init();
+                console.log(`Mayo-CLI: '${cmd}' is not a recognized command.`);
                 break;
         }
     },
