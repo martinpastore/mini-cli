@@ -1,6 +1,6 @@
 # Mayo CLI
 
-Mayo is a CLI for burgerjs framework.
+Mayo is a CLI for [BurgerJS](https://github.com/martinpastore/BurgerJS) framework.
 This project is open source, so if you wanna be part of, just go ahead!
 
 ### Installation
