@@ -12,8 +12,8 @@ const app = {
     map: function(cmd) {
         switch(cmd) {
             case 'init':
-                const name = optimist.argv["name"];
-                this.init(name);
+                const namei = optimist.argv["name"];
+                this.init(namei);
                 break;
             case 'build':
                 this.build();
@@ -21,6 +21,11 @@ const app = {
             case 'run':
                 const port = optimist.argv["port"];
                 this.run(port);
+                break;
+            case 'new':
+                const namen = optimist.argv["name"];
+                const type = optimist.argv["type"];
+                this.new(namen, type);
                 break;
             default:
                 console.log(`Mayo-CLI: '${cmd}' is not a recognized command.`);
@@ -77,12 +82,17 @@ const app = {
         });
     },
     build: function() {
-        exec('node module.js', function (error, stdout, stderr) {
-            if (error !== null) {
-                console.log('exec error: ' + error);
-                process.exit(1);
-            }
-        })
+        if (fs.existsSync('burger.json')) {
+            exec('node module.js', function (error, stdout, stderr) {
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                    process.exit(1);
+                }
+            });
+        } else {
+            console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
+            process.exit(1);
+        }
     },
     run: function(port) {
         if (fs.existsSync('burger.json')) {
@@ -103,6 +113,26 @@ const app = {
             } else {
                 console.log('Mayo-CLI: You need to run "build" command before "run"');
                 process.exit(1);
+            }
+        } else {
+            console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
+            process.exit(1);
+        }
+    },
+    new: function(name, type) {
+        if (fs.existsSync('burger.json')) {
+            if (type === 'component') {
+                process.chdir(`./components`);
+                fs.mkdirSync(`./${name}`);
+                fs.writeFile(`./${name}/${name}.html`, '');
+                fs.writeFile(`./${name}/${name}.js`, '');
+                fs.writeFile(`./${name}/${name}.css`, '');
+            } else if (type === 'page') {
+                process.chdir(`./pages`);
+                fs.mkdirSync(`./${name}`);
+                fs.writeFile(`./${name}/${name}.html`, '');
+                fs.writeFile(`./${name}/${name}.js`, '');
+                fs.writeFile(`./${name}/${name}.css`, '');
             }
         } else {
             console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
