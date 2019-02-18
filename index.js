@@ -57,11 +57,15 @@ const app = {
           "styles": [],
           "pages": "pages",
           "components": "components"
-        }`);
+        }`, function(err, result) {
+            if(err) console.log('error', err);
+          });
         fs.writeFile(`./${name}/module.js`, `const burger = require('burgerjs');
     
             burger.module([]);`
-        );
+        , function(err, result) {
+            if(err) console.log('error', err);
+          });
 
         process.chdir(`${name}`);
 
