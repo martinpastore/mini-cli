@@ -28,7 +28,7 @@ const app = {
                 this.new(namen, type);
                 break;
             default:
-                console.log(`Mayo-CLI: '${cmd}' is not a recognized command.`);
+                console.log(`Mini-CLI: '${cmd}' is not a recognized command.`);
                 break;
         }
     },
@@ -37,7 +37,7 @@ const app = {
             name = 'burgerjs-test';
         }
         clear();
-        console.log(chalk.yellow(figlet.textSync('Mayo CLI', {horizontalLayout: 'full'})));
+        console.log(chalk.yellow(figlet.textSync('Mini CLI', {horizontalLayout: 'full'})));
 
         if (!fs.existsSync(`./${name}`)) {
             fs.mkdirSync(`./${name}`);
@@ -90,7 +90,7 @@ const app = {
                 }
             });
         } else {
-            console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
+            console.log('Mini-CLI: You should be in a burgerjs project to use this command');
             process.exit(1);
         }
     },
@@ -111,11 +111,11 @@ const app = {
                     }
                 });
             } else {
-                console.log('Mayo-CLI: You need to run "build" command before "run"');
+                console.log('Mini-CLI: You need to run "build" command before "run"');
                 process.exit(1);
             }
         } else {
-            console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
+            console.log('Mini-CLI: You should be in a burgerjs project to use this command');
             process.exit(1);
         }
     },
@@ -135,7 +135,7 @@ const app = {
                 fs.writeFileSync(`./${name}/${name}.css`, '');
             }
         } else {
-            console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
+            console.log('Mini-CLI: You should be in a burgerjs project to use this command');
             process.exit(1);
         }
     }

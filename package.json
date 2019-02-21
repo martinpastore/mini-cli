@@ -1,5 +1,5 @@
 {
-  "name": "mayo-cli",
+  "name": "mini-cli",
   "version": "0.0.30",
   "description": "burgerjs command line interface",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martinpastore/mayo-cli.git"
+    "url": "git+https://github.com/martinpastore/mini-cli.git"
   },
   "author": "martinpastore",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/martinpastore/mayo-cli/issues"
+    "url": "https://github.com/martinpastore/mini-cli/issues"
   },
-  "homepage": "https://github.com/martinpastore/mayo-cli#readme",
+  "homepage": "https://github.com/martinpastore/mini-cli#readme",
   "dependencies": {
     "burgerjs": "0.0.31",
     "chalk": "^2.4.1",
