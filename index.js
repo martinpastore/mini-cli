@@ -58,7 +58,7 @@ const app = {
           "pages": "pages",
           "components": "components"
         }`);
-        fs.writeFileSync(`./${name}/module.js`, `const mini = require('minijs');
+        fs.writeFileSync(`./${name}/module.js`, `const mini = require('@bochap_/minijs');
     
             mini.module([]);`
         );
@@ -71,7 +71,7 @@ const app = {
                 process.exit(1);
             }
 
-            exec('npm install --save minijs@latest', function (error, stdout, stderr) {
+            exec('npm install --save @bochap_/minijs@latest', function (error, stdout, stderr) {
                 if (stdout !== null) console.log('stdout: ' + stdout);
                 if (stderr !== null && stderr !== '') console.log('stderr: ' + stderr);
                 if (error !== null) {

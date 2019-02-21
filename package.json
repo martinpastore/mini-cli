@@ -1,13 +1,13 @@
 {
   "name": "@bochap_/mini-cli",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "burgerjs command line interface",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "mayo": "index.js"
+    "mini": "index.js"
   },
   "repository": {
     "type": "git",
