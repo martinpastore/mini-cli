@@ -51,21 +51,17 @@ const app = {
         fs.mkdirSync(`./${name}/styles`);
         fs.mkdirSync(`./${name}/scripts`);
 
-        fs.writeFile(`./${name}/burger.json`, `{
+        fs.writeFileSync(`./${name}/burger.json`, `{
           "title": "BurgerJS - Test SPA",
           "scripts": [],
           "styles": [],
           "pages": "pages",
           "components": "components"
-        }`, function(err, result) {
-            if(err) console.log('error', err);
-          });
-        fs.writeFile(`./${name}/module.js`, `const burger = require('burgerjs');
+        }`);
+        fs.writeFileSync(`./${name}/module.js`, `const burger = require('burgerjs');
     
             burger.module([]);`
-        , function(err, result) {
-            if(err) console.log('error', err);
-          });
+        );
 
         process.chdir(`${name}`);
 
@@ -128,15 +124,15 @@ const app = {
             if (type === 'component') {
                 process.chdir(`./components`);
                 fs.mkdirSync(`./${name}`);
-                fs.writeFile(`./${name}/${name}.html`, '');
-                fs.writeFile(`./${name}/${name}.js`, '');
-                fs.writeFile(`./${name}/${name}.css`, '');
+                fs.writeFileSync(`./${name}/${name}.html`, '');
+                fs.writeFileSync(`./${name}/${name}.js`, '');
+                fs.writeFileSync(`./${name}/${name}.css`, '');
             } else if (type === 'page') {
                 process.chdir(`./pages`);
                 fs.mkdirSync(`./${name}`);
-                fs.writeFile(`./${name}/${name}.html`, '');
-                fs.writeFile(`./${name}/${name}.js`, '');
-                fs.writeFile(`./${name}/${name}.css`, '');
+                fs.writeFileSync(`./${name}/${name}.html`, '');
+                fs.writeFileSync(`./${name}/${name}.js`, '');
+                fs.writeFileSync(`./${name}/${name}.css`, '');
             }
         } else {
             console.log('Mayo-CLI: You should be in a burgerjs project to use this command');
