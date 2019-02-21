@@ -34,7 +34,7 @@ const app = {
     },
     init: function (name) {
         if (!name) {
-            name = 'burgerjs-test';
+            name = 'minijs-test';
         }
         clear();
         console.log(chalk.yellow(figlet.textSync('Mini CLI', {horizontalLayout: 'full'})));
@@ -51,16 +51,16 @@ const app = {
         fs.mkdirSync(`./${name}/styles`);
         fs.mkdirSync(`./${name}/scripts`);
 
-        fs.writeFileSync(`./${name}/burger.json`, `{
-          "title": "BurgerJS - Test SPA",
+        fs.writeFileSync(`./${name}/mini.json`, `{
+          "title": "MiniJS - Test SPA",
           "scripts": [],
           "styles": [],
           "pages": "pages",
           "components": "components"
         }`);
-        fs.writeFileSync(`./${name}/module.js`, `const burger = require('burgerjs');
+        fs.writeFileSync(`./${name}/module.js`, `const mini = require('minijs');
     
-            burger.module([]);`
+            mini.module([]);`
         );
 
         process.chdir(`${name}`);
@@ -71,7 +71,7 @@ const app = {
                 process.exit(1);
             }
 
-            exec('npm install --save burgerjs@latest', function (error, stdout, stderr) {
+            exec('npm install --save minijs@latest', function (error, stdout, stderr) {
                 if (stdout !== null) console.log('stdout: ' + stdout);
                 if (stderr !== null && stderr !== '') console.log('stderr: ' + stderr);
                 if (error !== null) {
@@ -82,7 +82,7 @@ const app = {
         });
     },
     build: function() {
-        if (fs.existsSync('burger.json')) {
+        if (fs.existsSync('mini.json')) {
             exec('node module.js', function (error, stdout, stderr) {
                 if (error !== null) {
                     console.log('exec error: ' + error);
@@ -90,12 +90,12 @@ const app = {
                 }
             });
         } else {
-            console.log('Mini-CLI: You should be in a burgerjs project to use this command');
+            console.log('Mini-CLI: You should be in a minijs project to use this command');
             process.exit(1);
         }
     },
     run: function(port) {
-        if (fs.existsSync('burger.json')) {
+        if (fs.existsSync('mini.json')) {
 
             if (!port) {
                 port = '8080';
@@ -115,12 +115,12 @@ const app = {
                 process.exit(1);
             }
         } else {
-            console.log('Mini-CLI: You should be in a burgerjs project to use this command');
+            console.log('Mini-CLI: You should be in a minijs project to use this command');
             process.exit(1);
         }
     },
     new: function(name, type) {
-        if (fs.existsSync('burger.json')) {
+        if (fs.existsSync('mini.json')) {
             if (type === 'component') {
                 process.chdir(`./components`);
                 fs.mkdirSync(`./${name}`);
@@ -135,7 +135,7 @@ const app = {
                 fs.writeFileSync(`./${name}/${name}.css`, '');
             }
         } else {
-            console.log('Mini-CLI: You should be in a burgerjs project to use this command');
+            console.log('Mini-CLI: You should be in a minijs project to use this command');
             process.exit(1);
         }
     }
