@@ -109,6 +109,17 @@ const app = {
                         console.log('exec error: ' + error);
                         process.exit(1);
                     }
+                    if (fs.existsSync('mini.json')) {
+                        exec('node module.js', function (error, stdout, stderr) {
+                            if (error !== null) {
+                                console.log('exec error: ' + error);
+                                process.exit(1);
+                            }
+                        });
+                    } else {
+                        console.log('Mini-CLI: You should be in a minijs project to use this command');
+                        process.exit(1);
+                    }
                 });
             } else {
                 console.log('Mini-CLI: You need to run "build" command before "run"');
