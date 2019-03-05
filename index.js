@@ -27,6 +27,9 @@ const app = {
                 const type = optimist.argv["type"];
                 this.new(namen, type);
                 break;
+            case 'serve':
+                this.serve();
+                break;
             default:
                 console.log(`Mini-CLI: '${cmd}' is not a recognized command.`);
                 break;
@@ -125,6 +128,19 @@ const app = {
                 console.log('Mini-CLI: You need to run "build" command before "run"');
                 process.exit(1);
             }
+        } else {
+            console.log('Mini-CLI: You should be in a minijs project to use this command');
+            process.exit(1);
+        }
+    },
+    serve: function() {
+        if (fs.existsSync('mini.json')) {
+            exec(`nodemon server.js --ignore './dist' -e html,js,css`, function (error, stdout, stderr) {
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                    process.exit(1);
+                }
+            });
         } else {
             console.log('Mini-CLI: You should be in a minijs project to use this command');
             process.exit(1);

@@ -1,6 +1,6 @@
 {
   "name": "@bochap_/mini-cli",
-  "version": "0.0.9",
+  "version": "0.0.21",
   "description": "burgerjs command line interface",
   "main": "index.js",
   "scripts": {
